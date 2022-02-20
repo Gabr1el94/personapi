@@ -1,8 +1,10 @@
 package com.gabrielone.personapi.controller;
 
+import javax.validation.Valid;
+
 import com.gabrielone.personapi.dto.MessageResponseDTO;
+import com.gabrielone.personapi.dto.request.PersonDTO;
 import com.gabrielone.personapi.entity.Person;
-import com.gabrielone.personapi.repository.PersonRepository;
 import com.gabrielone.personapi.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person entity) {
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO entity) {
         Person savePerson = personService.createPerson(entity);
         return MessageResponseDTO
                 .builder()
