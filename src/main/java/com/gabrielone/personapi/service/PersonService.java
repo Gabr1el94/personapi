@@ -1,5 +1,8 @@
 package com.gabrielone.personapi.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.gabrielone.personapi.dto.request.PersonDTO;
 import com.gabrielone.personapi.entity.Person;
 import com.gabrielone.personapi.mapper.PersonMapper;
@@ -25,5 +28,11 @@ public class PersonService {
 
         Person savePerson = personRepository.save(personToSave );
         return savePerson;
+    }
+
+    public List<PersonDTO> listAll() {
+        List<Person> peoples= personRepository.findAll();
+        return peoples.stream().map(personMapper::toDTO)
+        .collect(Collectors.toList());
     }
 }

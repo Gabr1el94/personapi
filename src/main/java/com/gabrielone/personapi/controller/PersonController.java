@@ -1,5 +1,7 @@
 package com.gabrielone.personapi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.gabrielone.personapi.dto.MessageResponseDTO;
@@ -42,6 +44,9 @@ public class PersonController {
                 .message("Created person with ID"+ savePerson.getId())
                 .build();
     }
-    
 
+    @GetMapping("/all")
+    public List<PersonDTO> listAll(){
+        return personService.listAll();
+    }
 }
